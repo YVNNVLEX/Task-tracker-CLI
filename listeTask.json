@@ -1,0 +1,5 @@
+[
+    {"id": 1, "description": "frites", "status": "in-progress", "createdAt": "10/01/25", "updatedAt": "10/01/25"},
+    {"id": 2, "description": "pomme", "status": "done", "createdAt": "10/01/25", "updatedAt": "10/01/25"}, 
+    {"id": 3, "description": "banane", "status": "in-progress", "createdAt": "10/01/25", "updatedAt": "10/01/25"}
+]
