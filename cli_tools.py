@@ -11,7 +11,7 @@ class Task:
         self.status = status
         self.createdAt = createdAt
         self.updatedAt = updatedAt
-        Task.idTask +=1
+        
         
     def create(self):
         self.id = Task.idTask    
