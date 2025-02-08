@@ -1,4 +1,5 @@
-import cmd, json, os, atexit
+import cmd, json, os
+from Ascii_art import ascii
 from datetime import datetime
       
 class Task:
@@ -18,7 +19,7 @@ class Task:
 
 class MyCLI(cmd.Cmd):
     prompt = "TaskRunner>> "
-    intro = "Bienvenue dans le task tracker fait par me" 
+    intro = ascii.renderText('TODO LIST TRACKER') 
     
     def do_add(self, arg):
         if (arg.strip()):
@@ -73,7 +74,6 @@ class MyCLI(cmd.Cmd):
     def do_update(self, arg):
         if arg.strip():
             allArgs = arg.split(" ",1)
-            print(allArgs)
             if len(allArgs) > 1 and len(allArgs)<3:
                 for args in allArgs:
                     arg1 = allArgs[0]
@@ -90,8 +90,8 @@ class MyCLI(cmd.Cmd):
                             json.dump(convertfile, f, indent=4)
                         print("La modification a été effectué")
                     else:
-                        print(f"La tâche {arg1} n'existe pas \n Pour la créer entre la syntaxe suivante 'add [ajouter Tâche]'")
                         continue
+                print(f"La tâche {arg1} n'existe pas \n Pour la créer entre la syntaxe suivante 'add [ajouter Tâche]'\n")
             else:
                 print("Vous devez saisir comme suit: [id] [tâche remplacante]")
         
@@ -100,16 +100,15 @@ class MyCLI(cmd.Cmd):
             if(os.path.isfile('./listeTask.json')):
                 f = open('listeTask.json','r')
                 convertfile = json.load(f)
+                print("| id | description | status | createdAt | updatedAt |")
                 for task in convertfile:
                     id = task['id']
                     description = task['description']
                     status = task['status']
                     created = task["createdAt"]
                     updated = task["updatedAt"]
-                    print("| id | description | status | createdAt | updatedAt |")
                     print("_____________________________________________________")
                     print(f"| {id} | {description} | {status} | {created} | {updated} |")
-                    print("_____________________________________________________")
             else:
                 print("Le fichier n'existe pas")
         elif arg.strip() == "done":
@@ -122,16 +121,15 @@ class MyCLI(cmd.Cmd):
                 else:
                     continue
             if len(done):
+                print("| id | description | status | createdAt | updatedAt |")
                 for allTask in done:
                     id = allTask["id"]
                     description = allTask["description"]
                     status = allTask["status"]
                     created = allTask["createdAt"]
                     updated= allTask["updatedAt"]
-                    print("| id | description | status | createdAt | updatedAt |")
                     print("_____________________________________________________")
                     print(f"| {id} | {description} | {status} | {created} | {updated} |")
-                    print("_____________________________________________________")
             else:
                 print("Ne contient aucune tâche")
             
@@ -145,16 +143,15 @@ class MyCLI(cmd.Cmd):
                 else:
                     continue
             if len(todo) != 0:
+                print("| id | description | status | createdAt | updatedAt |")
                 for allTask in todo:
                     id = allTask["id"]
                     description = allTask["description"]
                     status = allTask["status"]
                     created = allTask["createdAt"]
                     updated= allTask["updatedAt"]
-                    print("| id | description | status | createdAt | updatedAt |")
                     print("_____________________________________________________")
                     print(f"| {id} | {description} | {status} | {created} | {updated} |")
-                    print("_____________________________________________________")
             else:
                 print("Ne contient aucune tâche")
             
@@ -168,16 +165,15 @@ class MyCLI(cmd.Cmd):
                 else:
                     continue
             if len(allProgress) != 0:
+                print("| id | description | status | createdAt | updatedAt |")
                 for allDone in allProgress:
                     id = allDone["id"]
                     description = allDone["description"]
                     status = allDone["status"]
                     created = allDone["createdAt"]
                     updated= allDone["updatedAt"]
-                    print("| id | description | status | createdAt | updatedAt |")
                     print("_____________________________________________________")
                     print(f"| {id} | {description} | {status} | {created} | {updated} |")
-                    print("_____________________________________________________")
             else:
                 print('Ne contient aucune tâche')
      
